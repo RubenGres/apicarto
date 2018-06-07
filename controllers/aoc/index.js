@@ -3,71 +3,50 @@ var router = new Router();
 
 const { check } = require('express-validator/check');
 const { matchedData } = require('express-validator/filter');
-const isGeometry = require('../../checker/isGeometry');
+
 const validateParams = require('../../middlewares/validateParams');
+const {isGeometry,isCodeInsee} = require('../../checker');
+const parseInseeCode = require('../../helper/parseInseeCode');
 
-var pgClient = require('../../middlewares/pgClient');
+const gppWfsClient = require('../../middlewares/gppWfsClient');
 
-var format = require('pg-format');
-var _ = require('lodash');
+const _ = require('lodash');
+
+
 
 /**
- * Récupération des AOC viticoles par géométrie
+ * Creation d'une chaîne de proxy sur le GPP
+ * @param {Object} typeName 
  */
+function createGppProxy(typeName){
+    return [
+        validateParams,
+        gppWfsClient,
+        function(req,res){
+            var params = matchedData(req);
+            params._limit = 100;
+            req.gppWfsClient.getFeatures(typeName, params)
+                .then(function(featureCollection) {
+                    res.json(featureCollection);
+                })
+                
+                .catch(function(err) {
+                    res.status(500).json(err);
+                })
+            ;
+        }
+    ];
+}
+
+
 router.get('/appellation-viticole', [
-    check('geom').exists().withMessage('Le paramètre geom est obligatoire'),
-    check('geom').custom(isGeometry)
-], validateParams, pgClient, function(req, res, next) {
-    var params = matchedData(req);
-
-    var sql = format(`
-        SELECT 
-            id,
-            new_insee,
-            new_nomcom,
-            old_insee,
-            old_nomcom,
-            type_ig,
-            id_app,
-            appellation,
-            id_denom,
-            denomination,
-            crinao,
-            ST_AsGeoJSON(geom) as geom 
-        FROM 
-            inao.appellation
-        WHERE ST_Intersects(
-            geom,
-            ST_SetSRID(ST_GeomFromGeoJSON('%s'), 4326)
-        )        
-        LIMIT 1000
-    `, params.geom );
-
-    req.pgClient.query(sql,function(err,result){
-        if (err)
-            return next(err);
-
-        return res.send({
-            type: 'FeatureCollection',
-            features: result.rows.map(function (row) {
-                const feature = {
-                    type: 'Feature',
-                    geometry: JSON.parse(row.geom),
-                    properties: _.omit(row, 'geom')
-                };
-                /*
-                if (row.granularite === 'commune' && !row.instruction_obligatoire) {
-                    const commune = _.find(req.intersectedCommunes, { insee: row.insee });
-                    feature.properties.area = commune.intersect_area;
-                    feature.properties.contains = commune.contains;
-                    feature.geometry = JSON.parse(commune.geom);
-                }
-                */
-                return feature;
-            })
-        });
-    });
-});
+    check('new_insee').optional().custom(isCodeInsee),
+    check('geom').exists().custom(isGeometry)
+], createGppProxy('AOC-VITICOLES:aire_parcellaire'));
+router.post('/appellation-viticole', [
+    check('geom').exists().custom(isGeometry)
+], createGppProxy('AOC-VITICOLES:aire_parcellaire'));
 
 
-module.exports = router;
+
+module.exports=router;

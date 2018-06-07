@@ -28,7 +28,12 @@ paths:
 
         Paramètres de sorties : Retourne un résultat de Type "FeatureCollection"
       parameters:
-
+        - name: apikey
+          in: query
+          description: Clé WFS géoportail
+          type: string
+          required: false
+          
         - name: geom
           in: query
           required: true
