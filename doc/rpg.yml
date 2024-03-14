@@ -31,7 +31,7 @@ info:
       
       RPG.2013:rpg_2013
 
-      RPG.2014:ilots_anonymes
+      RPG.2014:rpg_2014
 
     
     **RPG V2** 
@@ -137,7 +137,7 @@ paths:
     get:
       description: |
         Prend une geometrie de type GeoJSON en paramètre d'entrée et renvoie les informations intersectant cette géométrie
-        Prend une date qui sera une valeur comprise entre 2015 et 2021 inclus.
+        Prend une date qui sera une valeur comprise entre 2015 et 2022 inclus.
         Les champs année et geom sont obligatoires.
         
       Paramètres de sorties : Retourne un résultat de Type "FeatureCollection"
