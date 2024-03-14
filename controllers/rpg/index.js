@@ -28,11 +28,7 @@ function createRpgProxy(valeurSearch) {
             /*  Modification année dans le flux */
             if (valeurSearch == 'v1') {
                 if ((params.annee >= firstYearRPG) && (params.annee <= 2014))  {
-                    if (params.annee == 2014) {
-                        featureTypeName = 'RPG.' + params.annee + ':ilots_anonymes';
-                    } else  {
-                        featureTypeName = 'RPG.' + params.annee + ':rpg_' + params.annee;
-                    }
+                    featureTypeName = 'RPG.' + params.annee + ':rpg_' + params.annee;
                 } else {
                     return res.status(400).send({
                         code: 400,
