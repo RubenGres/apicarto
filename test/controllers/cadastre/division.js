@@ -6,16 +6,15 @@ const expect = require('expect.js');
 const app = require('../../../app');
 
 const EXPECTED_PROPERTIES = [
-	"bbox",
-	"code_arr",
-	"code_com",
-	"code_dep",
-	"code_insee",
-	"com_abs",
-	"echelle",
-	"edition",
-	"feuille",
-	"nom_com",
+    "code_arr",
+    "code_com",
+    "code_dep",
+    "code_insee",
+    "com_abs",
+    "echelle",
+    "edition",
+    "feuille",
+    "nom_com",
 	"section"
 ];
 
