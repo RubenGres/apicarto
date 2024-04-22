@@ -6,7 +6,7 @@ import cors from 'cors';
 
 import { requestLogger } from './middlewares/request-logger.js';
 
-var cadastre = import('./controllers/cadastre/index.js');
+import { router as cadastre } from './controllers/cadastre/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -60,12 +60,12 @@ app.use(
     express.static(__dirname + '/node_modules/swagger-ui-dist')
 );
 app.use('/api/doc',  express.static(__dirname + '/doc'));
-app.get('/api/doc',function(req,res){
-    res.render('index',{datasets: require('./datasets')});
-});
-app.get('/api/doc/:moduleName', function(req,res){
-    res.render('module',{moduleName: req.params.moduleName});
-});
+// app.get('/api/doc',function(req,res){
+//     res.render('index',{datasets: require('./datasets')});
+// });
+// app.get('/api/doc/:moduleName', function(req,res){
+//     res.render('module',{moduleName: req.params.moduleName});
+// });
 
 app.get('/', function (req, res) {
     res.redirect('/api/doc/');
@@ -79,35 +79,34 @@ app.get('/api/', function (req, res) {
  -----------------------------------------------------------------------------*/
 /* Module cadastre */
 // app.use('/api/cadastre',require('./controllers/cadastre'));
-console.log((await cadastre));
-app.use('/api/cadastre',  (await cadastre));
+//app.use('/api/cadastre', cadastre);
 
-/* Module AOC */
-app.use('/api/aoc',require('./controllers/aoc'));
+// /* Module AOC */
+// app.use('/api/aoc',require('./controllers/aoc'));
 
-/* Module code postaux */
-app.use('/api/codes-postaux', require('./controllers/codes-postaux'));
+// /* Module code postaux */
+// app.use('/api/codes-postaux', require('./controllers/codes-postaux'));
 
-/* Module GPU */
-app.use('/api/gpu',require('./controllers/gpu'));
+// /* Module GPU */
+// app.use('/api/gpu',require('./controllers/gpu'));
 
-/* Module RPG */
-app.use('/api/rpg',require('./controllers/rpg'));
+// /* Module RPG */
+// app.use('/api/rpg',require('./controllers/rpg'));
 
-/* Module Nature */
-app.use('/api/nature',require('./controllers/nature'));
+// /* Module Nature */
+// app.use('/api/nature',require('./controllers/nature'));
 
-/* Module all module IGN */
-app.use('/api/wfs-geoportail',require('./controllers/wfs-geoportail'));
+// /* Module all module IGN */
+// app.use('/api/wfs-geoportail',require('./controllers/wfs-geoportail'));
 
-/* Module Espace Revendeur */
-app.use('/api/er',require('./controllers/er'));
+// /* Module Espace Revendeur */
+// app.use('/api/er',require('./controllers/er'));
 
-/* Module Dreal Corse */
-app.use('/api/corse/',require('./controllers/corse'));
+// /* Module Dreal Corse */
+// app.use('/api/corse/',require('./controllers/corse'));
 
-/* Endpoints dédié à la surveillance */
-app.use('/api/health/',require('./controllers/health'));
+// /* Endpoints dédié à la surveillance */
+// app.use('/api/health/',require('./controllers/health'));
 
 //module.exports = app;
 export {app};
