@@ -1,16 +1,28 @@
-var Router = require('express').Router;
+import { Router } from 'express';
+import cors from 'cors';
+import { check, matchedData } from 'express-validator';
+import validateParams from '../../middlewares/validateParams.js';
+import isGeometry from '../../checker/isGeometry.js';
+import isCodeInsee from '../../checker/isCodeInsee.js';
+import parseInseeCode from '../../helper/parseInseeCode.js';
+import gppWfsClient from '../../middlewares/gppWfsClient.js';
+import pkg from 'lodash'
+const { _ } = pkg;
+
+
+//var Router = require('express').Router;
 var router = new Router();
-var cors = require('cors');
-const { check } = require('express-validator');
-const { matchedData } = require('express-validator');
+//var cors = require('cors');
+//const { check } = require('express-validator');
+//const { matchedData } = require('express-validator');
 
-const validateParams = require('../../middlewares/validateParams');
-const {isGeometry,isCodeInsee} = require('../../checker');
-const parseInseeCode = require('../../helper/parseInseeCode');
+//const validateParams = require('../../middlewares/validateParams');
+//const {isGeometry,isCodeInsee} = require('../../checker');
+//const parseInseeCode = require('../../helper/parseInseeCode');
 
-const gppWfsClient = require('../../middlewares/gppWfsClient');
+//const gppWfsClient = require('../../middlewares/gppWfsClient');
 
-const _ = require('lodash');
+//const _ = require('lodash');
 
 
 /**
@@ -184,4 +196,4 @@ router.get('/feuille', cors(corsOptionsGlobal),divisionValidators, createCadastr
 router.post('/feuille', cors(corsOptionsGlobal),divisionValidators, createCadastreProxy('CADASTRALPARCELS.PARCELLAIRE_EXPRESS:feuille'));
 
 
-module.exports=router;
+export { router };

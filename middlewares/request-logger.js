@@ -1,11 +1,18 @@
-const bunyan = require('bunyan');
-const { v4: uuidV4 } = require('uuid');
-const onFinished = require('on-finished');
-const _ = require('lodash');
+import { createLogger } from "bunyan";
+import { v4 as uuidV4} from "uuid";
+import pkg1 from 'on-finished';
+const { onFinished } = pkg1;
+import pkg2 from 'lodash'
+const { _ } = pkg2;
+//const bunyan = require('bunyan');
+// const { v4: uuidV4 } = require('uuid');
+ //const onFinished = require('on-finished');
+ //const _ = require('lodash');
 
 
-module.exports = function () {
-    const logger = bunyan.createLogger({
+//module.exports = function () {
+var requestLogger = function () {
+    const logger = /*bunyan.*/createLogger({
         name: 'request'
     });
 
@@ -39,3 +46,5 @@ module.exports = function () {
         next();
     };
 };
+
+export {requestLogger};

@@ -1,11 +1,12 @@
-const GeoportalWfsClient = require('geoportal-wfs-client');
+import geoportalWfsClient from 'geoportal-wfs-client';
+//const GeoportalWfsClient = require('geoportal-wfs-client');
 
 /*
  * Middleware pour la création du client WFS geoportail
  * 
  * TODO permettre la définition de la clé au niveau du serveur
  */
-module.exports = function(req, res, next) {
+var gppWfsClient = function(req, res, next) {
     /* gestion des variables d'environnement et valeur par défaut */
     var options = {
         'defaultGeomFieldName': 'geom',
@@ -27,3 +28,5 @@ module.exports = function(req, res, next) {
 
     next();
 };
+
+export default gppWfsClient;

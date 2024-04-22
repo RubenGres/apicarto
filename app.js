@@ -1,8 +1,22 @@
-const path = require('path');
+import path from 'path';
+import { fileURLToPath } from 'url';
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+import { requestLogger } from './middlewares/request-logger.js';
+
+var cadastre = import('./controllers/cadastre/index.js');
+
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
+
+//const path = require('path');
+
+//const express = require('express');
+//const bodyParser = require('body-parser');
+//const cors = require('cors');
 
 var app = express();
 
@@ -32,7 +46,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(require('./middlewares/request-logger')());
+//app.use(require('./middlewares/request-logger')());
+app.use(requestLogger);
 
 /*------------------------------------------------------------------------------
  * /api/doc - expose documentation
@@ -63,7 +78,9 @@ app.get('/api/', function (req, res) {
  * Routes
  -----------------------------------------------------------------------------*/
 /* Module cadastre */
-app.use('/api/cadastre',require('./controllers/cadastre'));
+// app.use('/api/cadastre',require('./controllers/cadastre'));
+console.log((await cadastre));
+app.use('/api/cadastre',  (await cadastre));
 
 /* Module AOC */
 app.use('/api/aoc',require('./controllers/aoc'));
@@ -92,4 +109,5 @@ app.use('/api/corse/',require('./controllers/corse'));
 /* Endpoints dédié à la surveillance */
 app.use('/api/health/',require('./controllers/health'));
 
-module.exports = app;
+//module.exports = app;
+export {app};
