@@ -6,24 +6,9 @@ import isGeometry from '../../checker/isGeometry.js';
 import isCodeInsee from '../../checker/isCodeInsee.js';
 import parseInseeCode from '../../helper/parseInseeCode.js';
 import gppWfsClient from '../../middlewares/gppWfsClient.js';
-import pkg from 'lodash'
-const { _ } = pkg;
+import _ from 'lodash'
 
-
-//var Router = require('express').Router;
 var router = new Router();
-//var cors = require('cors');
-//const { check } = require('express-validator');
-//const { matchedData } = require('express-validator');
-
-//const validateParams = require('../../middlewares/validateParams');
-//const {isGeometry,isCodeInsee} = require('../../checker');
-//const parseInseeCode = require('../../helper/parseInseeCode');
-
-//const gppWfsClient = require('../../middlewares/gppWfsClient');
-
-//const _ = require('lodash');
-
 
 /**
  * Creation d'une chaîne de proxy sur le geoportail

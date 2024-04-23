@@ -7,16 +7,14 @@ import cors from 'cors';
 import { requestLogger } from './middlewares/request-logger.js';
 
 import { router as cadastre } from './controllers/cadastre/index.js';
+import { router as aoc } from './controllers/aoc/index.js';
+
+import { datasets } from './datasets/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__filename);
 
-//const path = require('path');
-
-//const express = require('express');
-//const bodyParser = require('body-parser');
-//const cors = require('cors');
 
 var app = express();
 
@@ -47,7 +45,7 @@ app.use(function (req, res, next) {
 });
 
 //app.use(require('./middlewares/request-logger')());
-app.use(requestLogger);
+app.use(requestLogger());
 
 /*------------------------------------------------------------------------------
  * /api/doc - expose documentation
@@ -60,12 +58,12 @@ app.use(
     express.static(__dirname + '/node_modules/swagger-ui-dist')
 );
 app.use('/api/doc',  express.static(__dirname + '/doc'));
-// app.get('/api/doc',function(req,res){
-//     res.render('index',{datasets: require('./datasets')});
-// });
-// app.get('/api/doc/:moduleName', function(req,res){
-//     res.render('module',{moduleName: req.params.moduleName});
-// });
+app.get('/api/doc',function(req,res){
+    res.render('index',{datasets: datasets});
+});
+app.get('/api/doc/:moduleName', function(req,res){
+    res.render('module',{moduleName: req.params.moduleName});
+});
 
 app.get('/', function (req, res) {
     res.redirect('/api/doc/');
@@ -79,10 +77,10 @@ app.get('/api/', function (req, res) {
  -----------------------------------------------------------------------------*/
 /* Module cadastre */
 // app.use('/api/cadastre',require('./controllers/cadastre'));
-//app.use('/api/cadastre', cadastre);
+app.use('/api/cadastre', cadastre);
 
 // /* Module AOC */
-// app.use('/api/aoc',require('./controllers/aoc'));
+app.use('/api/aoc',aoc);
 
 // /* Module code postaux */
 // app.use('/api/codes-postaux', require('./controllers/codes-postaux'));

@@ -1,14 +1,13 @@
-var Router = require('express').Router;
-var router = new Router();
-var format = require('pg-format');
-const { check } = require('express-validator');
-const { matchedData } = require('express-validator');
-const isGeometry = require('../../checker/isGeometry');
-const validateParams = require('../../middlewares/validateParams');
+import { Router } from 'express';
+import format from 'pg-format';
+import { check, matchedData } from 'express-validator';
+import validateParams from '../../middlewares/validateParams.js';
+import isGeometry from '../../checker/isGeometry.js';
+import pgClient from '../../middlewares/pgClient.js';
+import _ from 'lodash'
+import Handlebars from 'handlebars';
 
-var pgClient = require('../../middlewares/pgClient');
-var _ = require('lodash');
-var Handlebars = require('handlebars');
+var router = new Router();
 
 var reqAppellations = Handlebars.compile(`
         SELECT
@@ -89,4 +88,4 @@ router.post('/appellation-viticole', [
     });
 });
 
-module.exports = router;
+export {router};

@@ -1,12 +1,13 @@
-const debug = require('debug')('apicarto');
-const Client = require('pg').Client;
+import debug from 'debug';
+//const debug = require('debug')('apicarto');
+import Client from 'pg';
 
 /*
  * middleware pour la création et la libération des connexions postgresql
  */
-module.exports = function(req, res, next) {
+var pgClient = function(req, res, next) {
     debug('create pg connection...');
-    req.pgClient = new Client({
+    req.pgClient = new Client.Client({
         user: process.env.PGUSER|| 'postgis',
         host: process.env.PGHOST || 'localhost',
         database: process.env.PGDATABASE || 'postgres',
@@ -29,3 +30,5 @@ module.exports = function(req, res, next) {
         debug(err);
     });
 };
+
+export default pgClient;

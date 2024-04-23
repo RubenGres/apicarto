@@ -1,5 +1,4 @@
-import geoportalWfsClient from 'geoportal-wfs-client';
-//const GeoportalWfsClient = require('geoportal-wfs-client');
+import GeoportalWfsClient from 'geoportal-wfs-client';
 
 /*
  * Middleware pour la création du client WFS geoportail
