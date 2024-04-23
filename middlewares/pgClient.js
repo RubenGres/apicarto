@@ -1,6 +1,7 @@
-import debug from 'debug';
-//const debug = require('debug')('apicarto');
+import createDebugMessages from 'debug';
 import Client from 'pg';
+
+const debug = createDebugMessages('apicarto');
 
 /*
  * middleware pour la création et la libération des connexions postgresql

@@ -1,4 +1,4 @@
-const GeoportalWfsClientEr = require('../lib/ClientEr.js');
+import { ClientEr as GeoportalWfsClientEr } from '../lib/ClientEr.js';
 
 
 /*
@@ -6,7 +6,7 @@ const GeoportalWfsClientEr = require('../lib/ClientEr.js');
  * 
  * TODO permettre la définition de la clé au niveau du serveur
  */
-module.exports = function(req, res, next) {
+var erWfsClient = function(req, res, next) {
     /* gestion des variables d'environnement et valeur par défaut */
     var options = {
         url: 'https://data.geopf.fr/wfs/ows',
@@ -24,3 +24,5 @@ module.exports = function(req, res, next) {
 
     next();
 };
+
+export default erWfsClient;

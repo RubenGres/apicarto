@@ -1,5 +1,4 @@
 import parseInseeCode from "../helper/parseInseeCode.js";
-//const parseInseeCode = require('../helper/parseInseeCode');
 
 /**
  * Validation des codes insee

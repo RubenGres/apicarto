@@ -8,6 +8,14 @@ import { requestLogger } from './middlewares/request-logger.js';
 
 import { router as cadastre } from './controllers/cadastre/index.js';
 import { router as aoc } from './controllers/aoc/index.js';
+import { router as codes_postaux } from './controllers/codes-postaux/index.js';
+import { router as gpu } from './controllers/gpu/index.js';
+import { router as rpg } from './controllers/rpg/index.js';
+import { router as nature } from './controllers/nature/index.js';
+import { router as wfs_geoportail } from './controllers/wfs-geoportail/index.js';
+import { router as er } from './controllers/er/index.js';
+import { router as corse } from './controllers/corse/index.js';
+import { router as health } from './controllers/health/index.js';
 
 import { datasets } from './datasets/index.js';
 
@@ -44,7 +52,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-//app.use(require('./middlewares/request-logger')());
 app.use(requestLogger());
 
 /*------------------------------------------------------------------------------
@@ -76,35 +83,33 @@ app.get('/api/', function (req, res) {
  * Routes
  -----------------------------------------------------------------------------*/
 /* Module cadastre */
-// app.use('/api/cadastre',require('./controllers/cadastre'));
 app.use('/api/cadastre', cadastre);
 
-// /* Module AOC */
+/* Module AOC */
 app.use('/api/aoc',aoc);
 
-// /* Module code postaux */
-// app.use('/api/codes-postaux', require('./controllers/codes-postaux'));
+/* Module code postaux */
+app.use('/api/codes-postaux', codes_postaux);
 
-// /* Module GPU */
-// app.use('/api/gpu',require('./controllers/gpu'));
+/* Module GPU */
+app.use('/api/gpu',gpu);
 
-// /* Module RPG */
-// app.use('/api/rpg',require('./controllers/rpg'));
+/* Module RPG */
+app.use('/api/rpg',rpg);
 
-// /* Module Nature */
-// app.use('/api/nature',require('./controllers/nature'));
+/* Module Nature */
+app.use('/api/nature',nature);
 
-// /* Module all module IGN */
-// app.use('/api/wfs-geoportail',require('./controllers/wfs-geoportail'));
+/* Module all module IGN */
+app.use('/api/wfs-geoportail',wfs_geoportail);
 
-// /* Module Espace Revendeur */
-// app.use('/api/er',require('./controllers/er'));
+/* Module Espace Revendeur */
+app.use('/api/er',er);
 
-// /* Module Dreal Corse */
-// app.use('/api/corse/',require('./controllers/corse'));
+/* Module Dreal Corse */
+app.use('/api/corse/',corse);
 
-// /* Endpoints dédié à la surveillance */
-// app.use('/api/health/',require('./controllers/health'));
+/* Endpoints dédié à la surveillance */
+app.use('/api/health/',health);
 
-//module.exports = app;
 export {app};

@@ -1,14 +1,13 @@
-var Router = require('express').Router;
-var cors = require('cors');
+import { Router } from 'express';
+import cors from 'cors';
+import { check, matchedData } from 'express-validator';
+import validateParams from '../../middlewares/validateParams.js';
+import isGeometry from '../../checker/isGeometry.js';
+import isCodeInsee from '../../checker/isCodeInsee.js';
+import gpuWfsClient from '../../middlewares/gpuWfsClient.js';
+import _ from 'lodash';
+
 var router = new Router();
-
-const { check } = require('express-validator');
-const { matchedData } = require('express-validator');
-const {isGeometry,isCodeInsee} = require('../../checker');
-const validateParams = require('../../middlewares/validateParams');
-
-var gpuWfsClient = require('../../middlewares/gpuWfsClient');
-const _ = require('lodash');
 
 /**
  * Creation d'une chaîne de proxy sur le GPU
@@ -212,4 +211,4 @@ router.get('/all', cors(corsOptionsGlobal), [
 });
 
 
-module.exports=router;
+export {router};

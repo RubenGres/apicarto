@@ -6,7 +6,7 @@ import isGeometry from '../../checker/isGeometry.js';
 import isCodeInsee from '../../checker/isCodeInsee.js';
 import parseInseeCode from '../../helper/parseInseeCode.js';
 import gppWfsClient from '../../middlewares/gppWfsClient.js';
-import _ from 'lodash'
+import _ from 'lodash';
 
 var router = new Router();
 

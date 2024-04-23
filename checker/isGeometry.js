@@ -1,5 +1,4 @@
 import { hint as geojsonhint } from "@mapbox/geojsonhint";
-//const geojsonhint = require('@mapbox/geojsonhint').hint;
 
 /**
  * Validation des géométries geojson
