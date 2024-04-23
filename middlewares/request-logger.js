@@ -1,11 +1,10 @@
-const bunyan = require('bunyan');
-const { v4: uuidV4 } = require('uuid');
-const onFinished = require('on-finished');
-const _ = require('lodash');
+import { createLogger } from "bunyan";
+import { v4 as uuidV4} from "uuid";
+import onFinished  from 'on-finished';
+import _ from 'lodash'
 
-
-module.exports = function () {
-    const logger = bunyan.createLogger({
+var requestLogger = function () {
+    const logger = createLogger({
         name: 'request'
     });
 
@@ -39,3 +38,5 @@ module.exports = function () {
         next();
     };
 };
+
+export {requestLogger};

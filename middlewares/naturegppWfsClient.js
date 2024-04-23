@@ -1,4 +1,4 @@
-const GeoportalWfsClient = require('geoportal-wfs-client');
+import GeoportalWfsClient from 'geoportal-wfs-client';
 
 
 /*
@@ -6,7 +6,7 @@ const GeoportalWfsClient = require('geoportal-wfs-client');
  * 
  * TODO permettre la définition de la clé au niveau du serveur
  */
-module.exports = function(req, res, next) {
+var gppWfsClient = function(req, res, next) {
     /* gestion des variables d'environnement et valeur par défaut */
     var options = {
         'defaultCRS': 'EPSG:3857',
@@ -27,3 +27,5 @@ module.exports = function(req, res, next) {
 
     next();
 };
+
+export default gppWfsClient;

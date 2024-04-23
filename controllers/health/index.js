@@ -1,8 +1,8 @@
-var Router = require('express').Router;
-var router = new Router();
-var format = require('pg-format');
+import { Router } from 'express';
+import format from 'pg-format';
+import pgClient from '../../middlewares/pgClient.js';
 
-var pgClient = require('../../middlewares/pgClient');
+var router = new Router();
 
 /**
  * Contrôle de l'accès à la BDD
@@ -15,4 +15,4 @@ router.get('/db', pgClient, function(req, res, next) {
     });
 });
 
-module.exports = router;
+export {router};

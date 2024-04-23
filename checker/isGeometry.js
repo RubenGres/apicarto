@@ -1,10 +1,10 @@
-const geojsonhint = require('@mapbox/geojsonhint').hint;
+import { hint as geojsonhint } from "@mapbox/geojsonhint";
 
 /**
  * Validation des géométries geojson
  * @param {Object} value 
  */
-module.exports = function(value){
+var isGeometry = function(value){
     var errors = geojsonhint(value).filter(function(error){
         if ( typeof error.level !== 'undefined' ){
             if ( error.level !== 'error' ){
@@ -20,3 +20,4 @@ module.exports = function(value){
     return true;
 };
 
+export default isGeometry;

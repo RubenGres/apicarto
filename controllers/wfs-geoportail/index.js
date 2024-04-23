@@ -1,15 +1,13 @@
-var Router = require('express').Router;
+import { Router } from 'express';
+import cors from 'cors';
+import { check, matchedData } from 'express-validator';
+import validateParams from '../../middlewares/validateParams.js';
+import isGeometry from '../../checker/isGeometry.js';
+import gppWfsClient from '../../middlewares/gppWfsClient.js';
+import _ from 'lodash';
+
+
 var router = new Router();
-var cors = require('cors');
-const { check } = require('express-validator');
-const { matchedData } = require('express-validator');
-
-const validateParams = require('../../middlewares/validateParams');
-const {isGeometry} = require('../../checker');
-
-const gppWfsClient = require('../../middlewares/gppWfsClient');
-
-const _ = require('lodash');
 
 /**
  * Creation d'une chaîne de proxy sur le geoportail
@@ -88,4 +86,4 @@ router.get('/search', cors(corsOptionsGlobal),moduleValidator, createWfsProxy())
 
 
 
-module.exports=router;
+export {router};

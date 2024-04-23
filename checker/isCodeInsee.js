@@ -1,10 +1,12 @@
-const parseInseeCode = require('../helper/parseInseeCode');
+import parseInseeCode from "../helper/parseInseeCode.js";
 
 /**
  * Validation des codes insee
  * @param {String} value 
  */
-module.exports = function(value){
+var isCodeInsee = function(value){
     var inseeParts = parseInseeCode(value);
     return true;
 };
+
+export default isCodeInsee;
