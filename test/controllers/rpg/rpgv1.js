@@ -1,6 +1,5 @@
 /* eslint-env node, mocha */
 import request from 'supertest';
-import expect from 'expect.js';
 import { app } from '../../../app.js';
 
 describe('/api/rpg/v1', function() {

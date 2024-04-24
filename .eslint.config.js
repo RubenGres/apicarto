@@ -26,13 +26,8 @@ export default [
     languageOptions: {
         globals: {
           ...globals.node,
-          ...globals.es6
+          ...globals.browser
         }
-    }//,
-    // "env": {
-    //     "es6": true,
-    //     "node": true
-    // },
-    //"extends": "eslint:recommended"
+    }
 }   
 ]
