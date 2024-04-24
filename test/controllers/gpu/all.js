@@ -1,9 +1,7 @@
 /* eslint-env node, mocha */
-const request = require('supertest');
-const expect = require('expect.js');
-
-const app = require('../../../app');
-
+import request from 'supertest';
+import expect from 'expect.js';
+import { app } from '../../../app.js';
 describe('/api/gpu/all', function() {
 
     describe('with invalid geom', function() {

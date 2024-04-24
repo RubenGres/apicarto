@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run lint && npm run test-unit",
     "test-unit": "NODE_ENV=test nyc --reporter=html --reporter=text --reporter=cobertura mocha",
-    "lint": "eslint controllers/**/*.js middlewares/*.js helper/**/*.js *.js test/**/*.js lib/**/*.js",
+    "lint": "eslint -c .eslint.config.js controllers/**/*.js middlewares/*.js helper/**/*.js *.js test/**/*.js lib/**/*.js",
     "start": "node server | bunyan",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },

@@ -1,8 +1,7 @@
 /* eslint-env node, mocha */
-const request = require('supertest');
-const expect = require('expect.js');
-
-const app = require('../../../app');
+import request from 'supertest';
+import expect from 'expect.js';
+import { app } from '../../../app.js';
 
 describe('/api/rpg/v1', function() {
     describe('without filtering parameter', function() {

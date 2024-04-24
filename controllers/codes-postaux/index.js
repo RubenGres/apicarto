@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { check, matchedData } from 'express-validator';
 import validateParams from '../../middlewares/validateParams.js';
-import codesPostaux from 'codes-postaux'
+import codesPostaux from 'codes-postaux';
 
 var router = new Router();
 

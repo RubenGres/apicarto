@@ -1,5 +1,5 @@
 'use strict';
-import pkg from 'lodash'
+import pkg from 'lodash';
 const { _ } = pkg;
 const collectionIncludes = _.includes;
 

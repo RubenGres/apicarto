@@ -1,7 +1,7 @@
-import { createLogger } from "bunyan";
-import { v4 as uuidV4} from "uuid";
+import { createLogger } from 'bunyan';
+import { v4 as uuidV4} from 'uuid';
 import onFinished  from 'on-finished';
-import _ from 'lodash'
+import _ from 'lodash';
 
 var requestLogger = function () {
     const logger = createLogger({

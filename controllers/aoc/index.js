@@ -4,7 +4,7 @@ import { check, matchedData } from 'express-validator';
 import validateParams from '../../middlewares/validateParams.js';
 import isGeometry from '../../checker/isGeometry.js';
 import pgClient from '../../middlewares/pgClient.js';
-import _ from 'lodash'
+import _ from 'lodash';
 import Handlebars from 'handlebars';
 
 var router = new Router();

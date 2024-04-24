@@ -1,4 +1,7 @@
-{
+import globals from 'globals';
+
+export default [
+    {
     "rules": {
         "indent": [
             2,
@@ -20,9 +23,16 @@
             1
         ]
     },
-    "env": {
-        "es6": true,
-        "node": true
-    },
-    "extends": "eslint:recommended"
-}
+    languageOptions: {
+        globals: {
+          ...globals.node,
+          ...globals.es6
+        }
+    }//,
+    // "env": {
+    //     "es6": true,
+    //     "node": true
+    // },
+    //"extends": "eslint:recommended"
+}   
+]
