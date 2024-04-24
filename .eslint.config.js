@@ -24,6 +24,7 @@ export default [
         ]
     },
     languageOptions: {
+        sourceType: "module",
         globals: {
           ...globals.node,
           ...globals.browser
