@@ -21,4 +21,4 @@ dependencies:
 
 test:
   post:
-    - cat ./coverage/lcov.info | COVERALLS_REPO_TOKEN=eaMJkx2qgoBFZXef0sKFnEuRF7QS7FREP coveralls
+    - cat ./coverage/lcov.info | COVERALLS_REPO_TOKEN=jVgNlyHIaEgjaCRhvUYzPoYSi2y8eoao0 coveralls
