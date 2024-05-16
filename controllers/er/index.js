@@ -69,6 +69,21 @@ function createErProxy(featureTypeName,typeSearch){
                         });
                     }
                 }
+
+                // For params depublication_date select between 2 dates
+                
+                if((params.depubli_date_deb) && (params.depubli_date_fin)) {
+                    params.field_depublication_date = params.depubli_date_deb +'T00:00:00Z;'+ params.depubli_date_fin+'T23:59:59Z';
+                    params = _.omit(params,'depubli_date_deb');
+                    params = _.omit(params,'depubli_date_fin');
+                } else {
+                    if((params.depubli_date_deb) || (params.depubli_date_fin)) {
+                        return res.status(400).send({
+                            code: 400,
+                            message: 'Utilisation des dates de depublication avec une date de fin et une date de debut avec moins de 6 mois entre les 2 dates.'
+                        });
+                    }
+                }
             } 
 
             //For _propertyNames, we need to transform the string in Array
@@ -175,7 +190,9 @@ var productValidators = erValidators.concat([
     check('date_maj_fin').optional().isString(), // Param ne servant que pour admin
     check('admin').optional().isAlphanumeric().isLength({min:1,max:1}).withMessage('Le champ admin doit être Y ou N'),
     check('publi_date_deb').optional().isString(), // Param ne servant que pour admin
-    check('publi_date_fin').optional().isString() // Param ne servant que pour admin
+    check('publi_date_fin').optional().isString(), // Param ne servant que pour admin
+    check('depubli_date_deb').optional().isString(), // Param ne servant que pour admin
+    check('depubli_date_fin').optional().isString() // Param ne servant que pour admin
     
 ]);
 

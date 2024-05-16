@@ -44,11 +44,6 @@ paths:
           in: query
           type: string
           required: false
-          
-        - name: sale
-          in: query
-          type: string
-          required: false
         
         - name: publication_date
           in: query
@@ -81,10 +76,22 @@ paths:
 
         - name: publi_date_fin
           in: query
-          description: Date de publication de fin sous la forme AAAA-MM-JJ
+          description: Date de publication fin sous la forme AAAA-MM-JJ
           type: string
           require: false
-        
+
+        - name: depubli_date_deb
+          in: query
+          description: Date de dépublication début sous la forme AAAA-MM-JJ
+          type: string
+          require: false
+
+        - name: depubli_date_fin
+          in: query
+          description: Date de dépublication fin sous la forme AAAA-MM-JJ
+          type: string
+          require: false
+
         - name: _limit
           in: query
           description: Limite de résultats à afficher(chiffre entre 1 et 1000)

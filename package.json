@@ -19,7 +19,7 @@
   "repository": "IGNF/apicarto",
   "license": "CECILL-B",
   "engines": {
-    "node": ">=20"
+    "node": ">=18"
   },
   "dependencies": {
     "@mapbox/geojsonhint": "^3.1.0",
