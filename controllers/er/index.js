@@ -183,7 +183,6 @@ var productValidators = erValidators.concat([
     check('code_ean').optional().isAlphanumeric(),
     check('code_article').optional().isString(),
     check('name').optional().isString(),
-    check('sale').optional().isNumeric(),
     check('type').optional().isString(),
     check('publication_date').optional().isString(),
     check('date_maj_deb').optional().isString(), // Param ne servant que pour admin
