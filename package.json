@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "test": "npm run lint && npm run test-unit",
-    "test-unit": "NODE_ENV=test nyc --reporter=html --reporter=text --reporter=cobertura mocha",
+    "test-unit": "c8--reporter=html --reporter=text --reporter=cobertura mocha",
     "lint": "eslint -c .eslint.config.js controllers/**/*.js middlewares/*.js helper/**/*.js *.js test/**/*.js lib/**/*.js",
     "start": "node server | bunyan",
-    "coveralls": "NODE_ENV=test nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "c8 report --reporter=text-lcov | coveralls"
   },
   "contributors": [
     "Jérôme Desboeufs <jerome.desboeufs@data.gouv.fr>",
@@ -47,6 +47,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "c8": "^9.1.0",
     "coveralls": "^3.1.1",
     "eslint": "^9.1.0",
     "expect.js": "^0.3.1",
