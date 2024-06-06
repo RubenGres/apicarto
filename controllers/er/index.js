@@ -1,16 +1,13 @@
-var Router = require('express').Router;
+import { Router } from 'express';
+import cors from 'cors';
+import { check, matchedData } from 'express-validator';
+import validateParams from '../../middlewares/validateParams.js';
+import isGeometry from '../../checker/isGeometry.js';
+import erWfsClient from '../../middlewares/erWfsClient.js';
+import _ from 'lodash';
+
+
 var router = new Router();
-var cors = require('cors');
-const { check } = require('express-validator');
-const { matchedData } = require('express-validator');
-
-const validateParams = require('../../middlewares/validateParams');
-const {isGeometry} = require('../../checker');
-
-const erWfsClient = require('../../middlewares/erWfsClient');
-
-const _ = require('lodash');
-
 
 /**
  * Creation d'une chaîne de proxy sur le geoportail
@@ -233,4 +230,4 @@ router.get('/grid', cors(corsOptionsGlobal),gridValidators, createErProxy('espac
 router.post('/grid', cors(corsOptionsGlobal),gridValidators, createErProxy('espace_revendeurs:grid','grid'));
 
 
-module.exports=router;
+export {router};

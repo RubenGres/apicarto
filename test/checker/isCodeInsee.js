@@ -1,7 +1,6 @@
 /*eslint-env node, mocha */
-const expect = require('expect.js');
-
-const isCodeInsee = require('../../checker/isCodeInsee');
+import expect from 'expect.js';
+import isCodeInsee from '../../checker/isCodeInsee.js';
 
 const invalidInseeCodes = ['invalid', '25','2A', '99999'];
 const validInseeCodes = ['25349', '97501','2A004', '2B033'];

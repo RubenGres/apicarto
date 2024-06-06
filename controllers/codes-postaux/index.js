@@ -1,13 +1,9 @@
-const Router = require('express').Router;
+import { Router } from 'express';
+import { check, matchedData } from 'express-validator';
+import validateParams from '../../middlewares/validateParams.js';
+import codesPostaux from 'codes-postaux';
+
 var router = new Router();
-
-const { check } = require('express-validator');
-const { matchedData } = require('express-validator');
-
-const validateParams = require('../../middlewares/validateParams');
-
-/* import data package */
-const codesPostaux = require('codes-postaux');
 
 router.get('/communes/:codePostal', [
     check('codePostal').matches(/^\d{5}$/).withMessage('Code postal invalide')
@@ -20,4 +16,4 @@ router.get('/communes/:codePostal', [
     res.json(result);
 });
 
-module.exports=router;
+export {router};

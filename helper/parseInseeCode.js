@@ -1,9 +1,11 @@
 'use strict';
-const collectionIncludes = require('lodash').includes;
+import pkg from 'lodash';
+const { _ } = pkg;
+const collectionIncludes = _.includes;
 
 const INVALID_PREFIXES = ['96', '98', '99', '00', '20'];
 
-module.exports = function parseInseeCode(inseeCode) {
+var parseInseeCode = function(inseeCode) {
     if (inseeCode.length !== 5) throw new Error('INSEE code must have 5 characters');
 
     inseeCode = inseeCode.toUpperCase();
@@ -27,3 +29,5 @@ module.exports = function parseInseeCode(inseeCode) {
     return { code_dep: prefix, code_com: suffix };
 
 };
+
+export default parseInseeCode;

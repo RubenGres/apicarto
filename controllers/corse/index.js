@@ -1,13 +1,13 @@
-var Router = require('express').Router;
-var router = new Router();
-var cors = require('cors');
-const { check } = require('express-validator');
-const { matchedData } = require('express-validator');
+import { Router } from 'express';
+import cors from 'cors';
+import { check, matchedData } from 'express-validator';
+import validateParams from '../../middlewares/validateParams.js';
+import isGeometry from '../../checker/isGeometry.js';
+import drealCorseWfsClient from '../../middlewares/drealCorseWfsClient.js';
+import _ from 'lodash';
 
-const validateParams = require('../../middlewares/validateParams');
-const {isGeometry} = require('../../checker');
-const drealCorseWfsClient = require('../../middlewares/drealCorsewfsClient');
-const _ = require('lodash');
+
+var router = new Router();
     
 /**
  * Creation d'une chaîne de proxy sur le geoportail
@@ -123,4 +123,4 @@ var moduleValidator = [
 router.get('/search', cors(corsOptionsGlobal),moduleValidator, createAllCorseProxy());
 router.post('/search', cors(corsOptionsGlobal),moduleValidator, createAllCorseProxy());
 
-module.exports=router;
+export {router};

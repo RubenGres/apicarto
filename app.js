@@ -1,8 +1,28 @@
-const path = require('path');
+import path from 'path';
+import { fileURLToPath } from 'url';
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+import { requestLogger } from './middlewares/request-logger.js';
+
+import { router as cadastre } from './controllers/cadastre/index.js';
+import { router as aoc } from './controllers/aoc/index.js';
+import { router as codes_postaux } from './controllers/codes-postaux/index.js';
+import { router as gpu } from './controllers/gpu/index.js';
+import { router as rpg } from './controllers/rpg/index.js';
+import { router as nature } from './controllers/nature/index.js';
+import { router as wfs_geoportail } from './controllers/wfs-geoportail/index.js';
+import { router as er } from './controllers/er/index.js';
+import { router as corse } from './controllers/corse/index.js';
+import { router as health } from './controllers/health/index.js';
+
+import { datasets } from './datasets/index.js';
+
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
+
 
 var app = express();
 
@@ -32,7 +52,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(require('./middlewares/request-logger')());
+app.use(requestLogger());
 
 /*------------------------------------------------------------------------------
  * /api/doc - expose documentation
@@ -46,7 +66,7 @@ app.use(
 );
 app.use('/api/doc',  express.static(__dirname + '/doc'));
 app.get('/api/doc',function(req,res){
-    res.render('index',{datasets: require('./datasets')});
+    res.render('index',{datasets: datasets});
 });
 app.get('/api/doc/:moduleName', function(req,res){
     res.render('module',{moduleName: req.params.moduleName});
@@ -63,33 +83,33 @@ app.get('/api/', function (req, res) {
  * Routes
  -----------------------------------------------------------------------------*/
 /* Module cadastre */
-app.use('/api/cadastre',require('./controllers/cadastre'));
+app.use('/api/cadastre', cadastre);
 
 /* Module AOC */
-app.use('/api/aoc',require('./controllers/aoc'));
+app.use('/api/aoc',aoc);
 
 /* Module code postaux */
-app.use('/api/codes-postaux', require('./controllers/codes-postaux'));
+app.use('/api/codes-postaux', codes_postaux);
 
 /* Module GPU */
-app.use('/api/gpu',require('./controllers/gpu'));
+app.use('/api/gpu',gpu);
 
 /* Module RPG */
-app.use('/api/rpg',require('./controllers/rpg'));
+app.use('/api/rpg',rpg);
 
 /* Module Nature */
-app.use('/api/nature',require('./controllers/nature'));
+app.use('/api/nature',nature);
 
 /* Module all module IGN */
-app.use('/api/wfs-geoportail',require('./controllers/wfs-geoportail'));
+app.use('/api/wfs-geoportail',wfs_geoportail);
 
 /* Module Espace Revendeur */
-app.use('/api/er',require('./controllers/er'));
+app.use('/api/er',er);
 
 /* Module Dreal Corse */
-app.use('/api/corse/',require('./controllers/corse'));
+app.use('/api/corse/',corse);
 
 /* Endpoints dédié à la surveillance */
-app.use('/api/health/',require('./controllers/health'));
+app.use('/api/health/',health);
 
-module.exports = app;
+export {app};

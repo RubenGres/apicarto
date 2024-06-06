@@ -1,9 +1,9 @@
-const GeoportalWfsClient = require('geoportal-wfs-client');
+import GeoportalWfsClient from 'geoportal-wfs-client';
 
 /*
  * middleware pour la création du client geoportail
  */
-module.exports = function(req, res, next) {
+var drealCorseWfsClient = function(req, res, next) {
     var referer = 'http://localhost';
 
     /* forward du referer du client */
@@ -22,3 +22,5 @@ module.exports = function(req, res, next) {
     });
     next();
 };
+
+export default drealCorseWfsClient;

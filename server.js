@@ -1,5 +1,5 @@
-const debug = require('debug')('apicarto');
-const app = require('./app');
+import debug from 'debug';
+import { app } from './app.js';
 
 var port = process.env.PORT || 8091;
 app.listen(port, () => {

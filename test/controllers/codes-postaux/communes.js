@@ -1,6 +1,6 @@
 /* eslint-env node, mocha */
-const request = require('supertest');
-const app = require('../../../app');
+import request from 'supertest';
+import { app } from '../../../app.js';
 
 describe('/codes-postaux', function() {
     describe('/communes', function() {

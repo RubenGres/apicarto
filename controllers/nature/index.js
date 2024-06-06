@@ -1,16 +1,13 @@
-var Router = require('express').Router;
+import { Router } from 'express';
+import cors from 'cors';
+import { check, matchedData } from 'express-validator';
+import validateParams from '../../middlewares/validateParams.js';
+import isGeometry from '../../checker/isGeometry.js';
+import gppWfsClient from '../../middlewares/naturegppWfsClient.js';
+import _ from 'lodash';
+
+
 var router = new Router();
-var cors = require('cors');
-
-const _ = require('lodash');
-
-const { check } = require('express-validator');
-const { matchedData } = require('express-validator');
-const {isGeometry} = require('../../checker');
-const validateParams = require('../../middlewares/validateParams');
-const gppWfsClient = require('../../middlewares/naturegppWfsClient');
-
-
 /**
  * Creation d'une chaîne de proxy sur le geoportail
  * @param {String} featureTypeName le nom de la couche WFS
@@ -154,4 +151,4 @@ router.post('/pnr', cors(corsOptionsGlobal),reserveValidators, createNaturaProxy
 router.get('/rncf', cors(corsOptionsGlobal),reserveValidators, createNaturaProxy('PROTECTEDAREAS.RNCF:rncfs'));
 router.post('/rncf', cors(corsOptionsGlobal),reserveValidators, createNaturaProxy('PROTECTEDAREAS.RNCF:rncfs'));
 
-module.exports=router;
+export {router};

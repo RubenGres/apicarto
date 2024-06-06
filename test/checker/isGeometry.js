@@ -1,7 +1,7 @@
 /*eslint-env node, mocha */
-const expect = require('expect.js');
 
-const isGeometry = require('../../checker/isGeometry');
+import expect from 'expect.js';
+import isGeometry from '../../checker/isGeometry.js';
 
 describe('Test checker.isGeometry', function() {
     describe('with a string', function() {

@@ -77,6 +77,7 @@ paths:
         - name: publi_date_fin
           in: query
           description: Date de publication fin sous la forme AAAA-MM-JJ
+
           type: string
           require: false
 
@@ -91,7 +92,7 @@ paths:
           description: Date de dépublication fin sous la forme AAAA-MM-JJ
           type: string
           require: false
-        
+
         - name: _limit
           in: query
           description: Limite de résultats à afficher(chiffre entre 1 et 1000)
