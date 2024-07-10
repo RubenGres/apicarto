@@ -3,6 +3,8 @@ info:
   version: '2.7.7'
   title: API Carto multi-modules ChatGPT
   description: >
+    **Attention:** ce schema est expérimental et n'inclue pas toutes les fonctionnalités de l'apicarto. Redirigez vous aux schémas par modules pour un usage complet.
+    
     Schema OpenAPI de l'API Carto général incluant:
       - aoc: module appellations viticoles
       - cadastre: service d’interrogation du cadastre
